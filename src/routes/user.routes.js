@@ -1,8 +1,11 @@
+import userRegistroDTO from '#Dto/user.registro.dto.js';
 import { Router } from 'express';
 
 const userRouter = Router();
 
-userRouter.post('/registro', (req, res) => {});
+userRouter.post('/registro', userRegistroDTO, (req, res) => {
+    res.send();
+});
 
 userRouter.post('/login');
 
