@@ -1,4 +1,5 @@
 import userDeleteDTO from '#Dto/user.delete.dto.js';
+import userJWTDTO from '#Dto/user.jwt.dto.js';
 import userLoginDTO from '#Dto/user.login.dto.js';
 import userRegistroDTO from '#Dto/user.registro.dto.js';
 import updateDataDTO from '#Dto/user.update-data.dto.js';
@@ -14,11 +15,11 @@ userRouter.post('/registro', userRegistroDTO, (req, res) => {
 
 userRouter.post('/login', userLoginDTO);
 
-userRouter.get('/perfil');
+userRouter.get('/perfil', userJWTDTO);
 
-userRouter.patch('/actualizar-datos', updateDataDTO);
-userRouter.patch('/actualizar-email', updateEmailDTO);
-userRouter.patch('/actualizar-password', updatePasswordDTO);
+userRouter.patch('/actualizar-datos', userJWTDTO, updateDataDTO);
+userRouter.patch('/actualizar-email', userJWTDTO, updateEmailDTO);
+userRouter.patch('/actualizar-password', userJWTDTO, updatePasswordDTO);
 
 userRouter.delete('/baja', userDeleteDTO);
 
