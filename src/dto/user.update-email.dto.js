@@ -2,21 +2,12 @@ import { Type } from '@sinclair/typebox';
 import Ajv from 'ajv';
 import addFormat from 'ajv-formats';
 import addErrors from 'ajv-errors';
-import {
-    apellidoDtoSchema,
-    emailDtoSchema,
-    idDtoSchema,
-    nameDtoSchema,
-    passwordDtoSchema,
-} from '#Lib/dto.types.js';
+import { apellidoDtoSchema, emailDtoSchema } from '#Lib/dto.types.js';
 
-const registroDTOSchema = Type.Object(
+const updateEmailSchema = Type.Object(
     {
-        _id: idDtoSchema,
-        name: nameDtoSchema,
-        apellido: apellidoDtoSchema,
         email: emailDtoSchema,
-        password: passwordDtoSchema,
+        apellido: apellidoDtoSchema,
     },
     {
         additionalProperties: false,
@@ -27,16 +18,15 @@ const registroDTOSchema = Type.Object(
 );
 
 const ajv = new Ajv({ allErrors: true });
-
 ajv.addFormat('password', /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/);
 
-addFormat(ajv, ['email', 'uuid']).addKeyword('kind').addKeyword('modifier');
+addFormat(ajv, ['email']).addKeyword('kind').addKeyword('modifier');
 
 addErrors(ajv);
 
-const schemaValidacion = ajv.compile(registroDTOSchema);
+const schemaValidacion = ajv.compile(updateEmailSchema);
 
-const userRegistroDTO = (req, res, next) => {
+const updateEmailDTO = (req, res, next) => {
     const isDTOValid = schemaValidacion(req.body);
 
     if (!isDTOValid)
@@ -47,4 +37,4 @@ const userRegistroDTO = (req, res, next) => {
     next();
 };
 
-export default userRegistroDTO;
+export default updateEmailDTO;
