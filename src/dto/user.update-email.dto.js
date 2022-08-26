@@ -2,12 +2,12 @@ import { Type } from '@sinclair/typebox';
 import Ajv from 'ajv';
 import addFormat from 'ajv-formats';
 import addErrors from 'ajv-errors';
-import { apellidoDtoSchema, emailDtoSchema } from '#Lib/dto.types.js';
+import { emailDtoSchema, passwordDtoSchema } from '#Lib/dto.types.js';
 
 const updateEmailSchema = Type.Object(
     {
         email: emailDtoSchema,
-        apellido: apellidoDtoSchema,
+        password: passwordDtoSchema,
     },
     {
         additionalProperties: false,
