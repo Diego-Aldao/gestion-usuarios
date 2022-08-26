@@ -13,7 +13,7 @@ import {
 const registroDTOSchema = Type.Object(
     {
         _id: idDtoSchema,
-        name: nameDtoSchema,
+        nombre: nameDtoSchema,
         apellido: apellidoDtoSchema,
         email: emailDtoSchema,
         password: passwordDtoSchema,
