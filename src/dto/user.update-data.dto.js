@@ -5,7 +5,7 @@ import { apellidoDtoSchema, nameDtoSchema } from '#Lib/dto.types.js';
 
 const updateDataSchema = Type.Object(
     {
-        name: nameDtoSchema,
+        nombre: nameDtoSchema,
         apellido: apellidoDtoSchema,
     },
     {
