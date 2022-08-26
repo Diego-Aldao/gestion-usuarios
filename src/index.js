@@ -6,7 +6,7 @@ const bootstrap = async () => {
     await connectDB(process.env.MONGODB_URL);
 
     httpServer.listen(process.env.PUERTO, () => {
-        console.log('escuchando en el puerto');
+        console.log(`escuchando en el puerto ${process.env.PUERTO}`);
     });
 };
 

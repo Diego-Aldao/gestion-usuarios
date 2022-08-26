@@ -5,10 +5,12 @@ const userRegisterController = async (req, res) => {
     const { _id, nombre, apellido, email, password } = req.body;
 
     const userExistebyId = await UserModel.findById(_id).exec();
-    if (userExistebyId) return res.status(409).send('Usuario existente');
+    if (userExistebyId)
+        return res.status(409).send({ errors: ['Usuario no autorizado'] });
 
     const userExistebyEmail = await UserModel.findOne({ email }).exec();
-    if (userExistebyEmail) return res.status(409).send('Email Registrado');
+    if (userExistebyEmail)
+        return res.status(409).send({ errors: ['Email Registrado'] });
 
     const hashedPassword = await hash(password, 12);
     const user = new UserModel({

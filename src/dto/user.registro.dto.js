@@ -8,7 +8,7 @@ import {
     idDtoSchema,
     nameDtoSchema,
     passwordDtoSchema,
-} from '#Lib/dto.types.js';
+} from '#Dto/dto.types.js';
 
 const registroDTOSchema = Type.Object(
     {

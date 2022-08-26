@@ -6,7 +6,8 @@ const emailUpdateController = async (req, res) => {
     const { email, password } = req.body;
 
     const userExistebyId = await UserModel.findById(id).exec();
-    if (!userExistebyId) return res.status(401).send('Usuario no autorizado');
+    if (!userExistebyId)
+        return res.status(401).send({ errors: ['Usuario no autorizado'] });
 
     const chequearPassword = await compare(password, userExistebyId.password);
 
